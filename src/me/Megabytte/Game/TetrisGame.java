@@ -17,7 +17,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 public class TetrisGame 
 {
-	public final int ScreenW = 640, ScreenH = 480;
+	public final int ScreenW = 480, ScreenH = 640;
 	public boolean running = true;
 	long delta;
 	private static long lastFrame;
@@ -33,8 +33,15 @@ public class TetrisGame
 		initOpenGL(ScreenW, ScreenH);
 		initGame();
 		
-		while(!Display.isCloseRequested() && running == true)
+		while(running)
 		{
+			if(Display.isCloseRequested())
+			{
+				Display.destroy();
+				AL.destroy();
+				System.exit(0);
+			}
+			
 			delta = (long) getDelta();
 			draw();
 			input();
@@ -61,11 +68,15 @@ public class TetrisGame
 	public void update()
 	{
 		
+		
+		
 	}
 	
 	public void draw()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
+		
+		
 		
 	}
 	
