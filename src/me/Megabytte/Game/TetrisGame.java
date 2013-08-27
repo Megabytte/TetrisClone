@@ -7,6 +7,8 @@ import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
+import me.Megabytte.Game.Board.Board;
+import me.Megabytte.Game.Display.NextBlock;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -21,6 +23,8 @@ public class TetrisGame
 	public boolean running = true;
 	long delta;
 	private static long lastFrame;
+	Board board;
+	NextBlock nextBlock;
 	
 	public static void main(String[] args) 
 	{
@@ -76,8 +80,8 @@ public class TetrisGame
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		
-		
+		board.draw();
+		nextBlock.draw();
 	}
 	
 	public void initOpenGL(int screenw, int screenh)
@@ -102,6 +106,8 @@ public class TetrisGame
 	public void initGame()
 	{
 		lastFrame = getTime();
+		board = new Board(60, 40);
+		nextBlock = new NextBlock(380, 540);
 	}
 	
 	private static long getTime() 
